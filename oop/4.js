@@ -59,6 +59,8 @@ add.addEventListener('click', () => {
   let check = false;
   if (email.value == '') {
     mail = 'not a vip member';
+  } else {
+    mail = email.value;
   }
   let str1 = `<tr fakeId="${id}">
     <th check="false" scope="row" >
