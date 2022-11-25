@@ -9,8 +9,20 @@ const pic = document.querySelector('#image');
 const dob = document.querySelector('#dob');
 const vip = document.querySelector('#vip');
 const email = document.querySelector('#email');
+const emailField = document.querySelector('.email-field');
 
-let rowArr = [];
+let users = [];
+let vipState = false;
+
+vip.addEventListener('click', () => {
+  if (vipState === false) {
+    emailField.style.display = '';
+    vipState = true;
+  } else {
+    emailField.style.display = 'none';
+    vipState = false;
+  }
+});
 
 class User {
   constructor(
@@ -24,28 +36,27 @@ class User {
     tel,
     pic,
     dob,
-    vip,
     email = 'not a vip member'
   ) {
+    this.id = id;
+    this.check = check;
+    this.str1 = str1;
+    this.str2 = str2;
     this.firstName = first;
     this.lastName = last;
     this.phone = phone;
     this.tel = tel;
     this.pic = pic;
     this.dob = dob;
-    this.vip = vip;
+    this.vip = vipState;
     this.email = email;
   }
 }
 
-let users = [];
-
 add.addEventListener('click', () => {
   let id = new Date().getTime();
-  let rowObj = {
-    id: id,
-    check: false,
-    str1: `<tr fakeId="${id}">
+  let check = false;
+  let str1 = `<tr fakeId="${id}">
     <th check="false" scope="row" >
       <button onClick="check(event)"
       id="${id}"
@@ -65,7 +76,7 @@ add.addEventListener('click', () => {
     <td scope="col">${tel.value}</td>
     <td scope="col">${pic.value}</td>
     <td scope="col">${dob.value}</td>
-    <td scope="col">${vip.value}</td>
+    <td scope="col">${vipState}</td>
     <td scope="col">${email.value ?? 'no email'}</td> 
 
     <td scope="col" class="d-flex justify-content-around">
@@ -73,8 +84,8 @@ add.addEventListener('click', () => {
       <div>|</div>
       <a href="#"  onClick="edit(event)">Edit</a>
     </td>
-  </tr>`,
-    str2: `<tr fakeId="${id}">
+  </tr>`;
+  let str2 = `<tr fakeId="${id}">
     <th  scope="row" ">
       <svg onClick="check(event)"
       id="${id}"
@@ -101,7 +112,7 @@ add.addEventListener('click', () => {
     <td scope="col">${tel.value}</td>
     <td scope="col">${pic.value}</td>
     <td scope="col">${dob.value}</td>
-    <td scope="col">${vip.value}</td>
+    <td scope="col">${vipState}</td>
     <td scope="col">${email.value ?? 'no email'}</td> 
 
 
@@ -111,49 +122,50 @@ add.addEventListener('click', () => {
       <div>|</div>
       <a href="#" onClick="edit(event)">Edit</a>
     </td>
-  </tr>`,
-  };
-
-  rowArr.push(rowObj);
-
-  render();
+  </tr>`;
 
   users.push(
     new User(
+      id,
+      check,
+      str1,
+      str2,
       firstNameInput.value,
       lastNameInput.value,
       phone.value,
       tel.value,
       pic.value,
       dob.value,
-      vip.value,
+      vipState,
       email.value
     )
   );
+
+  render();
 });
 
 function render() {
   tbody.innerHTML = '';
-  for (let i = 0; i < rowArr.length; i++) {
-    if (rowArr[i].check == false) {
-      tbody.innerHTML += rowArr[i].str1;
-    } else if (rowArr[i].check == true) {
-      tbody.innerHTML += rowArr[i].str2;
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].check == false) {
+      tbody.innerHTML += users[i].str1;
+    } else if (users[i].check == true) {
+      tbody.innerHTML += users[i].str2;
     }
   }
 }
 
 function check(event) {
   let tempId = event.target.id;
-  for (let i = 0; i < rowArr.length; i++) {
-    if (tempId == rowArr[i].id) {
-      if (rowArr[i].check == true) {
-        rowArr[i].check = false;
+  for (let i = 0; i < users.length; i++) {
+    if (tempId == users[i].id) {
+      if (users[i].check == true) {
+        users[i].check = false;
         render();
         return;
       }
-      if (rowArr[i].check == false) {
-        rowArr[i].check = true;
+      if (users[i].check == false) {
+        users[i].check = true;
         render();
         return;
       }
@@ -162,9 +174,9 @@ function check(event) {
 }
 
 deleteBTN.addEventListener('click', () => {
-  for (let i = 0; i < rowArr.length; ) {
-    if (rowArr[i].check == true) {
-      rowArr.splice(i, 1);
+  for (let i = 0; i < users.length; ) {
+    if (users[i].check == true) {
+      users.splice(i, 1);
       i = 0;
       continue;
     }
@@ -175,9 +187,9 @@ deleteBTN.addEventListener('click', () => {
 
 function deleteRow(event) {
   let temp = event.target.parentElement.parentElement.getAttribute('fakeId');
-  for (let i = 0; i < rowArr.length; ) {
-    if (rowArr[i].id == temp) {
-      rowArr.splice(i, 1);
+  for (let i = 0; i < users.length; ) {
+    if (users[i].id == temp) {
+      users.splice(i, 1);
       i = 0;
       continue;
     }
@@ -194,11 +206,11 @@ function edit(event) {
   let newTel = prompt('please enter new tel');
   let newPic = prompt('please enter new pic');
   let newDob = prompt('please enter new date of bitrh');
-  let newVip = prompt('please enter new VIP selector');
+  vipState = prompt('please enter new VIP selector');
   let newEmail = prompt('please enter new email');
-  for (let i = 0; i < rowArr.length; i++) {
-    if (rowArr[i].id == temp) {
-      rowArr[i].str1 = `<tr fakeId="${temp}">
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].id == temp) {
+      users[i].str1 = `<tr fakeId="${temp}">
       <th check="false" scope="row" >
         <button onClick="check(event)"
         id="${temp}"
@@ -222,7 +234,7 @@ function edit(event) {
 
       <td scope="col">${newDob}</td>
 
-      <td scope="col">${newVip}</td>
+      <td scope="col">${vipState ?? 'not vip member'}</td>
 
       <td scope="col">${newEmail}</td>
   
@@ -232,7 +244,7 @@ function edit(event) {
         <a href="#"  onClick="edit(event)">Edit</a>
       </td>
     </tr>`;
-      rowArr[i].str2 = `<tr fakeId="${temp}">
+      users[i].str2 = `<tr fakeId="${temp}">
     <th  scope="row" ">
       <svg onClick="check(event)"
       id="${temp}"
@@ -263,7 +275,7 @@ function edit(event) {
 
     <td scope="col">${newDob}</td>
 
-    <td scope="col">${newVip}</td>
+    <td scope="col">${vipState ?? 'not vip member'}</td>
 
     <td scope="col">${newEmail}</td>
 
