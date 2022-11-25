@@ -38,6 +38,7 @@ add.addEventListener("click", () => {
     <td scope="col">${pic.value}</td>
     <td scope="col">${dob.value}</td>
     <td scope="col">${vip.value}</td>
+    <td scope="col">${email.value ?? "no email"}</td> 
 
     <td scope="col" class="d-flex justify-content-around">
       <a href="#" onClick="deleteRow(event)">Delete</a>
@@ -73,6 +74,9 @@ add.addEventListener("click", () => {
     <td scope="col">${pic.value}</td>
     <td scope="col">${dob.value}</td>
     <td scope="col">${vip.value}</td>
+    <td scope="col">${email.value ?? "no email"}</td> 
+
+
 
     <td scope="col" class="d-flex justify-content-around">
       <a href="#" onClick="deleteRow(event)">Delete</a>
