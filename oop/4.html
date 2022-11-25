@@ -1,80 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
 
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container d-flex flex-column p-5 m-auto0" style="width: 500px">
-      <div>
-        <label for="">First Name</label>
-        <input type="text" id="firstName" />
-      </div>
-      <div>
-        <label for="">Last Name</label>
-        <input type="text" id="lastName" />
-      </div>
-      <div>
-        <label for="">phone number</label>
-        <input type="number" id="phone" />
-      </div>
-      <div>
-        <label for="">Telephone *</label>
-        <input type="number" id="tel" />
-      </div>
-      <div>
-        <label for="">Picture *</label>
-        <input type="file" id="image" />
-      </div>
-      <div>
-        <label for="">Date of birth</label>
-        <input type="date" id="dob" />
-      </div>
-      <div>
-        <label for="">VIP User?</label>
-        <input type="checkbox" id="Vip" />
-      </div>
-      <div style="display: none">
-        <label for="">Email</label>
-        <input type="email" id="Email" />
-      </div>
-      <div class="d-flex flex-column w-25">
-        <button class="btn btn-primary m-1" id="add">Add</button>
-        <div
-          class="my-2"
-          style="height: 2px; background-color: grey; width: 450px"
-        ></div>
-        <button class="btn btn-danger m-1" id="delete">Delete</button>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col"><input type="checkbox" /></th>
-            <th scope="col">First Name</th>
+  <title>Document</title>
+</head>
 
-            <th scope="col">Last Name</th>
-
-            <th scope="col">Operations</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+<body>
+  <div class="container d-flex flex-column p-5 m-auto0" style="width: 500px">
+    <div>
+      <label for="">First Name</label>
+      <input type="text" id="firstName" />
+    </div>
+    <div>
+      <label for="">Last Name</label>
+      <input type="text" id="lastName" />
+    </div>
+    <div>
+      <label for="">phone number</label>
+      <input type="number" id="phone" />
+    </div>
+    <div>
+      <label for="">Telephone *</label>
+      <input type="number" id="tel" />
+    </div>
+    <div>
+      <label for="">Picture *</label>
+      <input type="text" id="image" />
+    </div>
+    <div>
+      <label for="">Date of birth</label>
+      <input type="date" id="dob" />
+    </div>
+    <div>
+      <label for="">VIP User?</label>
+      <input type="checkbox" id="vip" />
+    </div>
+    <div style="display: none">
+      <label for="">Email</label>
+      <input type="email" id="Email" />
+    </div>
+    <div class="d-flex flex-column w-25">
+      <button class="btn btn-primary m-1" id="add">Add</button>
+      <div class="my-2" style="height: 2px; background-color: grey; width: 450px"></div>
+      <button class="btn btn-danger m-1" id="delete">Delete</button>
     </div>
 
-    <script src="4.js"></script>
-  </body>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col"><input type="checkbox" /></th>
+          <th scope="col">First Name</th>
+
+          <th scope="col">Last Name</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">telephone</th>
+          <th scope="col">picture</th>
+          <th scope="col">date of birth</th>
+          <th scope="col">vip</th>
+          <th scope="col">email</th>
+
+
+          <th scope="col">Operations</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="4.js"></script>
+</body>
+
 </html>
