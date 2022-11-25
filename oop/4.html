@@ -14,55 +14,185 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-image: radial-gradient(rgb(29, 27, 13), rgb(0, 14, 15));
+        font-family: cursive;
+        color: #000000;
+      }
+
+      .glow {
+        font-size: 1px;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        animation: glow 0.5s ease-in-out infinite alternate;
+      }
+
+      @-webkit-keyframes glow {
+        from {
+          text-shadow: 0 0 1px #fff, 0 0 4px #fff, 0 0 30px #ffff00,
+            0 0 4px #ffff00, 0 0 5px #ffff00, 0 0 6px #ffff00, 0 0 70px #ffff00;
+        }
+
+        to {
+          text-shadow: 0 0 1px #fff, 0 0 3px #ffaaaa, 0 0 4px #ffaaaa,
+            0 0 5px #ffaaaa, 0 0 6px #ffaaaa, 0 0 7px #ffaaaa, 0 0 8px #ffaaaa;
+        }
+      }
+      label {
+        font-size: 12px;
+      }
+      .form {
+        width: 30%;
+        margin: auto;
+      }
+
+      th,
+      tr,
+      td {
+        font-size: 10px;
+      }
+      /* Main styles */
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+      .text {
+        fill: none;
+        stroke-width: 3;
+        stroke-linejoin: round;
+        stroke-dasharray: 70 330;
+        stroke-dashoffset: 0;
+        -webkit-animation: stroke 6s infinite linear;
+        animation: stroke 6s infinite linear;
+      }
+      .text:nth-child(5n + 1) {
+        stroke: #f2385a;
+        -webkit-animation-delay: -1.2s;
+        animation-delay: -1.2s;
+      }
+      .text:nth-child(5n + 2) {
+        stroke: #f5a503;
+        -webkit-animation-delay: -2.4s;
+        animation-delay: -2.4s;
+      }
+      .text:nth-child(5n + 3) {
+        stroke: #e9f1df;
+        -webkit-animation-delay: -3.6s;
+        animation-delay: -3.6s;
+      }
+      .text:nth-child(5n + 4) {
+        stroke: #56d9cd;
+        -webkit-animation-delay: -4.8s;
+        animation-delay: -4.8s;
+      }
+      .text:nth-child(5n + 5) {
+        stroke: #3aa1bf;
+        -webkit-animation-delay: -6s;
+        animation-delay: -6s;
+      }
+
+      @-webkit-keyframes stroke {
+        100% {
+          stroke-dashoffset: -400;
+        }
+      }
+      @keyframes stroke {
+        100% {
+          stroke-dashoffset: -400;
+        }
+      }
+      /* Other styles */
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        background: #111;
+        background-size: 0.2em 100%;
+        font: 5em/1 Open Sans, Impact;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      svg {
+        position: absolute;
+        z-index: -1;
+        top: 0px;
+        width: 100%;
+        /* height: 100%; */
+      }
+      .form {
+        margin-top: 15%;
+      }
+    </style>
 
     <title>Document</title>
   </head>
 
   <body>
-    <div class="container d-flex flex-column p-5 m-auto0" style="width: 500px">
-      <div>
-        <label for="">First Name</label>
-        <input type="text" id="firstName" />
+    <div class="p-0 m-0">
+      <svg viewBox="0 0 600 300">
+        <!-- Symbol-->
+        <symbol id="s-text">
+          <text text-anchor="middle" x="50%" y="10%" dy=".35em">
+            CW 11 Group 3
+          </text>
+        </symbol>
+        <!-- Duplicate symbols-->
+        <use class="text" xlink:href="#s-text"></use>
+        <use class="text" xlink:href="#s-text"></use>
+        <use class="text" xlink:href="#s-text"></use>
+        <use class="text" xlink:href="#s-text"></use>
+        <use class="text" xlink:href="#s-text"></use>
+      </svg>
+    </div>
+    <div
+      class="container d-flex flex-column p-5 m-auto"
+      style="width: 1000px; z-index: 5"
+    >
+      <div class="glow form">
+        <form action="">
+          <div class="form-group">
+            <label for="">First Name</label>
+            <input class="form-control" type="text" id="firstName" />
+          </div>
+          <div class="form-group">
+            <label for="">Last Name</label>
+            <input class="form-control" type="text" id="lastName" />
+          </div>
+          <div class="form-group">
+            <label for="">phone number</label>
+            <input class="form-control" type="number" id="phone" />
+          </div>
+          <div class="form-group">
+            <label for="">Telephone *</label>
+            <input class="form-control" type="number" id="tel" />
+          </div>
+          <div class="form-group">
+            <label for="">Picture *</label>
+            <input class="form-control" type="text" id="image" />
+          </div>
+          <div class="form-group">
+            <label for="">Date of birth</label>
+            <input class="form-control" type="date" id="dob" />
+          </div>
+          <div class="form-group">
+            <label for="">VIP User?</label>
+            <input class="form-control" type="checkbox" id="vip" />
+          </div>
+          <div class="email-field form-group" style="display: none">
+            <label for="">Email</label>
+            <input class="form-control" type="email" id="email" />
+          </div>
+        </form>
       </div>
-      <div>
-        <label for="">Last Name</label>
-        <input type="text" id="lastName" />
-      </div>
-      <div>
-        <label for="">phone number</label>
-        <input type="number" id="phone" />
-      </div>
-      <div>
-        <label for="">Telephone *</label>
-        <input type="number" id="tel" />
-      </div>
-      <div>
-        <label for="">Picture *</label>
-        <input type="text" id="image" />
-      </div>
-      <div>
-        <label for="">Date of birth</label>
-        <input type="date" id="dob" />
-      </div>
-      <div>
-        <label for="">VIP User?</label>
-        <input type="checkbox" id="vip" />
-      </div>
-      <div class="email-field" style="display: none">
-        <label for="">Email</label>
-        <input type="email" id="email" />
-      </div>
-      <div class="d-flex flex-column w-25">
+      <div class="d-flex flex-column w-25 m-auto">
         <button class="btn btn-primary m-1" id="add">Add</button>
-        <div
-          class="my-2"
-          style="height: 2px; background-color: grey; width: 450px"
-        ></div>
-        <button class="btn btn-danger m-1" id="delete">Delete</button>
-      </div>
 
+        <button class="btn btn-danger m-1 mb-4" id="delete">Delete</button>
+      </div>
       <table class="table table-bordered">
-        <thead>
+        <thead class="glow">
           <tr>
             <th scope="col"><input type="checkbox" /></th>
             <th scope="col">First Name</th>
@@ -78,7 +208,7 @@
             <th scope="col">Operations</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody class="text-light"></tbody>
       </table>
     </div>
 
