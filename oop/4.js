@@ -1,23 +1,51 @@
-const firstNameInput = document.querySelector("#firstName");
-const lastNameInput = document.querySelector("#lastName");
-const add = document.querySelector("#add");
-const deleteBTN = document.querySelector("#delete");
-const tbody = document.querySelector("tbody");
-const phone = document.querySelector("#phone");
-const tel = document.querySelector("#tel");
-const pic = document.querySelector("#image");
-const dob = document.querySelector("#dob");
-const vip = document.querySelector("#vip");
-const email = document.querySelector("#email");
+const firstNameInput = document.querySelector('#firstName');
+const lastNameInput = document.querySelector('#lastName');
+const add = document.querySelector('#add');
+const deleteBTN = document.querySelector('#delete');
+const tbody = document.querySelector('tbody');
+const phone = document.querySelector('#phone');
+const tel = document.querySelector('#tel');
+const pic = document.querySelector('#image');
+const dob = document.querySelector('#dob');
+const vip = document.querySelector('#vip');
+const email = document.querySelector('#email');
 
 let rowArr = [];
 
-add.addEventListener("click", () => {
-	let id = new Date().getTime();
-	let rowObj = {
-		id: id,
-		check: false,
-		str1: `<tr fakeId="${id}">
+class User {
+  constructor(
+    id,
+    check,
+    str1,
+    str2,
+    first,
+    last,
+    phone,
+    tel,
+    pic,
+    dob,
+    vip,
+    email = 'not a vip member'
+  ) {
+    this.firstName = first;
+    this.lastName = last;
+    this.phone = phone;
+    this.tel = tel;
+    this.pic = pic;
+    this.dob = dob;
+    this.vip = vip;
+    this.email = email;
+  }
+}
+
+let users = [];
+
+add.addEventListener('click', () => {
+  let id = new Date().getTime();
+  let rowObj = {
+    id: id,
+    check: false,
+    str1: `<tr fakeId="${id}">
     <th check="false" scope="row" >
       <button onClick="check(event)"
       id="${id}"
@@ -38,7 +66,7 @@ add.addEventListener("click", () => {
     <td scope="col">${pic.value}</td>
     <td scope="col">${dob.value}</td>
     <td scope="col">${vip.value}</td>
-    <td scope="col">${email.value ?? "no email"}</td> 
+    <td scope="col">${email.value ?? 'no email'}</td> 
 
     <td scope="col" class="d-flex justify-content-around">
       <a href="#" onClick="deleteRow(event)">Delete</a>
@@ -46,7 +74,7 @@ add.addEventListener("click", () => {
       <a href="#"  onClick="edit(event)">Edit</a>
     </td>
   </tr>`,
-		str2: `<tr fakeId="${id}">
+    str2: `<tr fakeId="${id}">
     <th  scope="row" ">
       <svg onClick="check(event)"
       id="${id}"
@@ -74,7 +102,7 @@ add.addEventListener("click", () => {
     <td scope="col">${pic.value}</td>
     <td scope="col">${dob.value}</td>
     <td scope="col">${vip.value}</td>
-    <td scope="col">${email.value ?? "no email"}</td> 
+    <td scope="col">${email.value ?? 'no email'}</td> 
 
 
 
@@ -84,74 +112,93 @@ add.addEventListener("click", () => {
       <a href="#" onClick="edit(event)">Edit</a>
     </td>
   </tr>`,
-	};
+  };
 
-	rowArr.push(rowObj);
+  rowArr.push(rowObj);
 
-	render();
+  render();
+
+  users.push(
+    new User(
+      firstNameInput.value,
+      lastNameInput.value,
+      phone.value,
+      tel.value,
+      pic.value,
+      dob.value,
+      vip.value,
+      email.value
+    )
+  );
 });
 
 function render() {
-	tbody.innerHTML = "";
-	for (let i = 0; i < rowArr.length; i++) {
-		if (rowArr[i].check == false) {
-			tbody.innerHTML += rowArr[i].str1;
-		} else if (rowArr[i].check == true) {
-			tbody.innerHTML += rowArr[i].str2;
-		}
-	}
+  tbody.innerHTML = '';
+  for (let i = 0; i < rowArr.length; i++) {
+    if (rowArr[i].check == false) {
+      tbody.innerHTML += rowArr[i].str1;
+    } else if (rowArr[i].check == true) {
+      tbody.innerHTML += rowArr[i].str2;
+    }
+  }
 }
 
 function check(event) {
-	let tempId = event.target.id;
-	for (let i = 0; i < rowArr.length; i++) {
-		if (tempId == rowArr[i].id) {
-			if (rowArr[i].check == true) {
-				rowArr[i].check = false;
-				render();
-				return;
-			}
-			if (rowArr[i].check == false) {
-				rowArr[i].check = true;
-				render();
-				return;
-			}
-		}
-	}
+  let tempId = event.target.id;
+  for (let i = 0; i < rowArr.length; i++) {
+    if (tempId == rowArr[i].id) {
+      if (rowArr[i].check == true) {
+        rowArr[i].check = false;
+        render();
+        return;
+      }
+      if (rowArr[i].check == false) {
+        rowArr[i].check = true;
+        render();
+        return;
+      }
+    }
+  }
 }
 
-deleteBTN.addEventListener("click", () => {
-	for (let i = 0; i < rowArr.length; ) {
-		if (rowArr[i].check == true) {
-			rowArr.splice(i, 1);
-			i = 0;
-			continue;
-		}
-		i++;
-	}
-	render();
+deleteBTN.addEventListener('click', () => {
+  for (let i = 0; i < rowArr.length; ) {
+    if (rowArr[i].check == true) {
+      rowArr.splice(i, 1);
+      i = 0;
+      continue;
+    }
+    i++;
+  }
+  render();
 });
 
 function deleteRow(event) {
-	let temp = event.target.parentElement.parentElement.getAttribute("fakeId");
-	for (let i = 0; i < rowArr.length; ) {
-		if (rowArr[i].id == temp) {
-			rowArr.splice(i, 1);
-			i = 0;
-			continue;
-		}
-		i++;
-	}
-	render();
+  let temp = event.target.parentElement.parentElement.getAttribute('fakeId');
+  for (let i = 0; i < rowArr.length; ) {
+    if (rowArr[i].id == temp) {
+      rowArr.splice(i, 1);
+      i = 0;
+      continue;
+    }
+    i++;
+  }
+  render();
 }
 
 function edit(event) {
-	let temp = event.target.parentElement.parentElement.getAttribute("fakeId");
-	let newFirst = prompt("please enter new first name");
-	let newLast = prompt("please enter new last name");
-	for (let i = 0; i < rowArr.length; i++) {
-		if (rowArr[i].id == temp) {
-			rowArr[i].str1 = `<tr fakeId="${temp}">
+  let temp = event.target.parentElement.parentElement.getAttribute('fakeId');
+  let newFirst = prompt('please enter new first name');
+  let newLast = prompt('please enter new last name');
+  let newPhone = prompt('please enter new phone number');
+  let newTel = prompt('please enter new tel');
+  let newPic = prompt('please enter new pic');
+  let newDob = prompt('please enter new date of bitrh');
+  let newVip = prompt('please enter new VIP selector');
+  let newEmail = prompt('please enter new email');
+  for (let i = 0; i < rowArr.length; i++) {
+    if (rowArr[i].id == temp) {
+      rowArr[i].str1 = `<tr fakeId="${temp}">
       <th check="false" scope="row" >
         <button onClick="check(event)"
         id="${temp}"
@@ -167,6 +214,17 @@ function edit(event) {
       <td scope="col">${newFirst}</td>
   
       <td scope="col">${newLast}</td>
+
+      <td scope="col">${newPhone}</td>
+
+      <td scope="col">${newTel}</td>
+      <td scope="col">${newPic}</td>
+
+      <td scope="col">${newDob}</td>
+
+      <td scope="col">${newVip}</td>
+
+      <td scope="col">${newEmail}</td>
   
       <td scope="col" class="d-flex justify-content-around">
         <a href="#" onClick="deleteRow(event)">Delete</a>
@@ -174,7 +232,7 @@ function edit(event) {
         <a href="#"  onClick="edit(event)">Edit</a>
       </td>
     </tr>`;
-			rowArr[i].str2 = `<tr fakeId="${temp}">
+      rowArr[i].str2 = `<tr fakeId="${temp}">
     <th  scope="row" ">
       <svg onClick="check(event)"
       id="${temp}"
@@ -198,13 +256,24 @@ function edit(event) {
 
     <td scope="col">${newLast}</td>
 
+    <td scope="col">${newPhone}</td>
+
+    <td scope="col">${newTel}</td>
+    <td scope="col">${newPic}</td>
+
+    <td scope="col">${newDob}</td>
+
+    <td scope="col">${newVip}</td>
+
+    <td scope="col">${newEmail}</td>
+
     <td scope="col" class="d-flex justify-content-around">
       <a href="#" onClick="deleteRow(event)">Delete</a>
       <div>|</div>
       <a href="#" onClick="edit(event)">Edit</a>
     </td>
   </tr>`;
-			render();
-		}
-	}
+      render();
+    }
+  }
 }
