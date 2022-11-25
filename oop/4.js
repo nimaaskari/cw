@@ -55,7 +55,11 @@ class User {
 
 add.addEventListener('click', () => {
   let id = new Date().getTime();
+  let mail;
   let check = false;
+  if (email.value == '') {
+    mail = 'not a vip member';
+  }
   let str1 = `<tr fakeId="${id}">
     <th check="false" scope="row" >
       <button onClick="check(event)"
@@ -77,7 +81,7 @@ add.addEventListener('click', () => {
     <td scope="col">${pic.value}</td>
     <td scope="col">${dob.value}</td>
     <td scope="col">${vipState}</td>
-    <td scope="col">${email.value ?? 'no email'}</td> 
+    <td scope="col">${mail}</td> 
 
     <td scope="col" class="d-flex justify-content-around">
       <a href="#" onClick="deleteRow(event)">Delete</a>
@@ -113,7 +117,7 @@ add.addEventListener('click', () => {
     <td scope="col">${pic.value}</td>
     <td scope="col">${dob.value}</td>
     <td scope="col">${vipState}</td>
-    <td scope="col">${email.value ?? 'no email'}</td> 
+    <td scope="col">${mail}</td> 
 
 
 
@@ -137,7 +141,7 @@ add.addEventListener('click', () => {
       pic.value,
       dob.value,
       vipState,
-      email.value
+      mail
     )
   );
 
