@@ -3,6 +3,12 @@ const lastNameInput = document.querySelector('#lastName');
 const add = document.querySelector('#add');
 const deleteBTN = document.querySelector('#delete');
 const tbody = document.querySelector('tbody');
+const phone = document.querySelector('#phone');
+const tel = document.querySelector('#tel');
+const pic = document.querySelector('#pic');
+const dob = document.querySelector('#dob');
+const vip = document.querySelector('#vip');
+const email = document.querySelector('#email');
 
 let rowArr = [];
 
@@ -57,6 +63,11 @@ add.addEventListener('click', () => {
     <td scope="col">${firstNameInput.value}</td>
 
     <td scope="col">${lastNameInput.value}</td>
+    <td scope="col">${phone.value}</td>
+    <td scope="col">${tel.value}</td>
+    <td scope="col">${pic.value}</td>
+    <td scope="col">${dob.value}</td>
+    <td scope="col">${vip.value}</td>
 
     <td scope="col" class="d-flex justify-content-around">
       <a href="#" onClick="deleteRow(event)">Delete</a>
